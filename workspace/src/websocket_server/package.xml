@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>websocket_server</name>
+  <version>0.0.0</version>
+  <description>The websocket_server package</description>
+
+  <maintainer email="yakato.jun@gmail.com">Takayuki Wada</maintainer>
+
+  <license>MIT</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>rosbridge_server</exec_depend>
+
+  <export>
+  </export>
+</package>
