@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import rospy
-import rosbag
 
 import os
 import sys
@@ -46,8 +45,19 @@ class BagPlayer:
       self.current_bag = os.path.join(self.bag_dir, self.bag_files[self.current_bag_idx])
       rospy.loginfo(f'Playing {self.current_bag}')
 
+      topics = subprocess.run(['rosbag', 'info', '--yaml', self.current_bag], stdout=subprocess.PIPE).stdout.decode('utf-8')
+      topics = [t.split(':')[1].strip() for t in topics.split('\n') if 'topic: ' in t]
+      
+      topic_log = 'Topics in bag file:'
+      for topic in topics:
+        topic_log += f'\n - {topic}'
+      rospy.loginfo(topic_log)
+
       try:
-        subprocess.run(['rosbag', 'play', self.current_bag, '--clock'])
+        subprocess.run(['rosbag', 'play', self.current_bag, '--clock'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+      except subprocess.CalledProcessError as e:
+        rospy.logerr(f'Error: {e}')
+        break
       except KeyboardInterrupt:
         break
 
