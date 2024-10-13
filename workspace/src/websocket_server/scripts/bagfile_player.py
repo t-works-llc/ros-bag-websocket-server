@@ -54,7 +54,7 @@ class BagPlayer:
       rospy.loginfo(topic_log)
 
       try:
-        subprocess.run(['rosbag', 'play', self.current_bag, '--clock'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        subprocess.run(['rosbag', 'play', self.current_bag, '--clock', '-q'])
       except subprocess.CalledProcessError as e:
         rospy.logerr(f'Error: {e}')
         break
