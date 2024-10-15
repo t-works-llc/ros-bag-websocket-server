@@ -19,6 +19,15 @@ cd <project_directory>
 docker compose build
 ```
 
+### for Windows User
+If you are using Windows, you can load docker-compose.windows.yml with the following command:
+
+```bash
+docker compose -f docker-compose.windows.yml build
+```
+
+For subsequent docker compose commands, make sure to specify this file using the -f option.
+
 ### Add ROS Bag File
 
 Download your desired ROS bag file and place it in the `./bag` directory of the project. This step is essential to stream the data properly.

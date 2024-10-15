@@ -1,0 +1,12 @@
+services:
+  websocket_server:
+    container_name: websocket_server
+    build:
+      context: .
+      dockerfile: builder/Dockerfile
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./bag:/root/bag
+      - ./workspace:/root/workspace
+      - ./scripts/entrypoint.sh:/usr/local/bin/entrypoint.sh
